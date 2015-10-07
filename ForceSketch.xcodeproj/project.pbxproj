@@ -12,6 +12,7 @@
 		055EB8F01BC51F6E007D4952 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8EE1BC51F6E007D4952 /* Main.storyboard */; };
 		055EB8F21BC51F6E007D4952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8F11BC51F6E007D4952 /* Assets.xcassets */; };
 		055EB8F51BC51F6E007D4952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8F31BC51F6E007D4952 /* LaunchScreen.storyboard */; };
+		055EB8FD1BC59D29007D4952 /* ForceSketch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8FC1BC59D29007D4952 /* ForceSketch.gif */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		055EB8F11BC51F6E007D4952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		055EB8F41BC51F6E007D4952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		055EB8F61BC51F6E007D4952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055EB8FC1BC59D29007D4952 /* ForceSketch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ForceSketch.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		055EB8E91BC51F6E007D4952 /* ForceSketch */ = {
 			isa = PBXGroup;
 			children = (
+				055EB8FC1BC59D29007D4952 /* ForceSketch.gif */,
 				055EB8EA1BC51F6E007D4952 /* AppDelegate.swift */,
 				055EB8EC1BC51F6E007D4952 /* ViewController.swift */,
 				055EB8EE1BC51F6E007D4952 /* Main.storyboard */,
@@ -121,6 +124,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055EB8FD1BC59D29007D4952 /* ForceSketch.gif in Resources */,
 				055EB8F51BC51F6E007D4952 /* LaunchScreen.storyboard in Resources */,
 				055EB8F21BC51F6E007D4952 /* Assets.xcassets in Resources */,
 				055EB8F01BC51F6E007D4952 /* Main.storyboard in Resources */,

@@ -12,8 +12,10 @@ class ViewController: UIViewController
 {
     let imageView = UIImageView()
     
-    let hsb = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputBrightnessKey: 0.05])!
-    let gaussianBlur = CIFilter(name: "CIGaussianBlur", withInputParameters: [kCIInputRadiusKey: 1])!
+    let hsb = CIFilter(name: "CIColorControls",
+        withInputParameters: [kCIInputBrightnessKey: 0.05])!
+    let gaussianBlur = CIFilter(name: "CIGaussianBlur",
+        withInputParameters: [kCIInputRadiusKey: 1])!
     let compositeFilter = CIFilter(name: "CISourceOverCompositing")!
     var imageAccumulator: CIImageAccumulator!
     
@@ -58,9 +60,7 @@ class ViewController: UIViewController
             return
         }
 
-        let imageSize = view.frame.size
-        
-        UIGraphicsBeginImageContext(imageSize)
+        UIGraphicsBeginImageContext(view.frame.size)
         
         let cgContext = UIGraphicsGetCurrentContext()
 
@@ -87,9 +87,9 @@ class ViewController: UIViewController
                 coalescedTouch.locationInView(view).x,
                 coalescedTouch.locationInView(view).y)
             
-            previousTouchLocation = coalescedTouch.locationInView(view)
-            
             CGContextStrokePath(cgContext)
+            
+            previousTouchLocation = coalescedTouch.locationInView(view)
         }
        
         let drawnImage = UIGraphicsGetImageFromCurrentImageContext()
