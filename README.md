@@ -49,7 +49,6 @@ Using the force property of each touch, I create constants for the line segments
     
     let lineColor = (traitCollection.forceTouchCapability == UIForceTouchCapability.Available) ?
         UIColor(hue: coalescedTouch.force / coalescedTouch.maximumPossibleForce, saturation: 1, brightness: 1, alpha: 1).CGColor :
-
         UIColor.grayColor().CGColor
 ```
 
@@ -69,7 +68,6 @@ With these constants I can set the line width and stroke colour in the graphics 
 
     CGContextAddLineToPoint(cgContext,
         coalescedTouch.locationInView(view).x,
-
         coalescedTouch.locationInView(view).y)
 ```
 
@@ -96,6 +94,7 @@ To display the newly drawn lines held in drawnImage, I use a `CISourceOverCompos
 ```swift
     compositeFilter.setValue(CIImage(image: drawnImage),
         forKey: kCIInputImageKey)
+        
     compositeFilter.setValue(imageAccumulator.image(),
         forKey: kCIInputBackgroundImageKey)
 ```
