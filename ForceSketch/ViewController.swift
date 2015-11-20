@@ -68,11 +68,11 @@ class ViewController: UIViewController
 
         for coalescedTouch in coalescedTouches
         {
-            let lineWidth = (traitCollection.forceTouchCapability == UIForceTouchCapability.Available) ?
+            let lineWidth = coalescedTouch.force != 0 ?
                 (coalescedTouch.force / coalescedTouch.maximumPossibleForce) * 20 :
                 10
             
-            let lineColor = (traitCollection.forceTouchCapability == UIForceTouchCapability.Available) ?
+            let lineColor = coalescedTouch.force != 0  ?
                 UIColor(hue: coalescedTouch.force / coalescedTouch.maximumPossibleForce, saturation: 1, brightness: 1, alpha: 1).CGColor :
                 UIColor.grayColor().CGColor
             
