@@ -1,9 +1,9 @@
 # ForceSketch
-####Demonstration of a Sketching App Using 3D Touch
+#### Demonstration of a Sketching App Using 3D Touch
 
 ![screenshot](ForceSketch/ForceSketch.gif)
 
-#####Companion project to this blog post: http://flexmonkey.blogspot.co.uk/2015/10/forcesketch-3d-touch-drawing-app-using.html
+##### Companion project to this blog post: http://flexmonkey.blogspot.co.uk/2015/10/forcesketch-3d-touch-drawing-app-using.html
 
 Following on from my recent posts on 3D Touch and touch coalescing, combining the two things together in a simple drawing application seemed like an obvious next step. This also gives me the chance to tinker with `CIImageAccumulator` which was newly introduced in iOS 9.
 
@@ -11,7 +11,7 @@ My little demo app, ForceSketch, allows the user to draw on their iPhone 6 scree
 
 Once the user lifts their finger, two Core Image filters, `CIColorControls` and `CIGaussianBlur` kick in and fade the drawing out.
 
-##Drawing Mechanics of ForceSketch
+## Drawing Mechanics of ForceSketch
 
 The drawing code is all called from my view controller's `touchesMoved` method. It's in here that I create a `UIImage` instance based on the coalesced touches and composite that image overthe existing image accumulator. In a production application, I'd probably do the image filtering in a background thread to improve the performance of the user interface but, for this demo, I think this approach is OK.
 
@@ -136,6 +136,6 @@ I rely on previousTouchLocation being nil to infer the user has finished their t
     imageView.image = UIImage(CIImage: imageAccumulator.image())
 ```
     
-##Source Code
+## Source Code
 
 As always, the source code for this project is available in my GitHub repository here. Enjoy!
