@@ -8,63 +8,56 @@
 
 import UIKit
 
-class ViewController: UIViewController
-{
+class ViewController: UIViewController {
     let imageView = UIImageView()
-    
     let hsb = CIFilter(name: "CIColorControls",
-        withInputParameters: [kCIInputBrightnessKey: 0.05])!
+                       parameters: [kCIInputBrightnessKey: 0.05])!
     let gaussianBlur = CIFilter(name: "CIGaussianBlur",
-        withInputParameters: [kCIInputRadiusKey: 1])!
+                                parameters: [kCIInputRadiusKey: 1])!
     let compositeFilter = CIFilter(name: "CISourceOverCompositing")!
     var imageAccumulator: CIImageAccumulator!
-    
     var previousTouchLocation: CGPoint?
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageAccumulator = CIImageAccumulator(extent: view.frame, format: kCIFormatARGB8)
+        imageAccumulator = CIImageAccumulator(extent: view.frame, format: CIFormat.ARGB8)
         
         view.addSubview(imageView)
         
-        let displayLink = CADisplayLink(target: self, selector: Selector("step"))
-        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        let displayLink = CADisplayLink(target: self, selector: #selector(step))
+        displayLink.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
     }
     
-    func step()
-    {
+    @objc func step() {
         if previousTouchLocation == nil
         {
             hsb.setValue(imageAccumulator.image(), forKey: kCIInputImageKey)
-            gaussianBlur.setValue(hsb.valueForKey(kCIOutputImageKey) as! CIImage, forKey: kCIInputImageKey)
+            gaussianBlur.setValue(hsb.value(forKey: kCIOutputImageKey) as! CIImage, forKey: kCIInputImageKey)
             
-            imageAccumulator.setImage(gaussianBlur.valueForKey(kCIOutputImageKey) as! CIImage)
+            imageAccumulator.setImage(gaussianBlur.value(forKey: kCIOutputImageKey) as! CIImage)
             
-            imageView.image = UIImage(CIImage: imageAccumulator.image())
+            imageView.image = UIImage(ciImage: imageAccumulator.image())
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
-    {
-        previousTouchLocation = touches.first?.locationInView(view)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        previousTouchLocation = touches.first?.location(in: view)
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?)
-    {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first,
-            event = event,
-            coalescedTouches = event.coalescedTouchesForTouch(touch) else
+            let event = event,
+            let coalescedTouches = event.coalescedTouches(for: touch) else
         {
             return
         }
 
         UIGraphicsBeginImageContext(view.frame.size)
         
-        let cgContext = UIGraphicsGetCurrentContext()
+        let cgContext = UIGraphicsGetCurrentContext()!
 
-        CGContextSetLineCap(cgContext, CGLineCap.Round)
+        cgContext.setLineCap(CGLineCap.round)
 
         for coalescedTouch in coalescedTouches
         {
@@ -73,26 +66,20 @@ class ViewController: UIViewController
                 10
             
             let lineColor = coalescedTouch.force != 0  ?
-                UIColor(hue: coalescedTouch.force / coalescedTouch.maximumPossibleForce, saturation: 1, brightness: 1, alpha: 1).CGColor :
-                UIColor.grayColor().CGColor
+                UIColor(hue: coalescedTouch.force / coalescedTouch.maximumPossibleForce, saturation: 1, brightness: 1, alpha: 1).cgColor :
+                UIColor.gray.cgColor
             
-            CGContextSetLineWidth(cgContext, lineWidth)
-            CGContextSetStrokeColorWithColor(cgContext, lineColor)
+            cgContext.setLineWidth(lineWidth)
+            cgContext.setStrokeColor(lineColor)
+            cgContext.move(to: CGPoint(x: previousTouchLocation!.x, y: previousTouchLocation!.y))
+            cgContext.addLine(to: CGPoint(x: coalescedTouch.location(in: view).x, y: coalescedTouch.location(in: view).y))
+
+            cgContext.strokePath()
             
-            CGContextMoveToPoint(cgContext,
-                previousTouchLocation!.x,
-                previousTouchLocation!.y)
-      
-            CGContextAddLineToPoint(cgContext,
-                coalescedTouch.locationInView(view).x,
-                coalescedTouch.locationInView(view).y)
-            
-            CGContextStrokePath(cgContext)
-            
-            previousTouchLocation = coalescedTouch.locationInView(view)
+            previousTouchLocation = coalescedTouch.location(in: view)
         }
        
-        let drawnImage = UIGraphicsGetImageFromCurrentImageContext()
+        let drawnImage = UIGraphicsGetImageFromCurrentImageContext()!
 
         UIGraphicsEndImageContext()
   
@@ -101,26 +88,17 @@ class ViewController: UIViewController
         compositeFilter.setValue(imageAccumulator.image(),
             forKey: kCIInputBackgroundImageKey)
         
-        imageAccumulator.setImage(compositeFilter.valueForKey(kCIOutputImageKey) as! CIImage)
+        imageAccumulator.setImage(compositeFilter.value(forKey: kCIOutputImageKey) as! CIImage)
         
-        imageView.image = UIImage(CIImage: imageAccumulator.image())
+        imageView.image = UIImage(ciImage: imageAccumulator.image())
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
-    {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         previousTouchLocation = nil
     }
     
-    override func viewDidLayoutSubviews()
-    {
+    override func viewDidLayoutSubviews() {
         imageView.frame = view.frame
     }
-    
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
-    {
-        return UIInterfaceOrientationMask.Portrait
-    }
-
-
 }
 

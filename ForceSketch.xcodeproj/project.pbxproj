@@ -12,7 +12,7 @@
 		055EB8F01BC51F6E007D4952 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8EE1BC51F6E007D4952 /* Main.storyboard */; };
 		055EB8F21BC51F6E007D4952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8F11BC51F6E007D4952 /* Assets.xcassets */; };
 		055EB8F51BC51F6E007D4952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8F31BC51F6E007D4952 /* LaunchScreen.storyboard */; };
-		055EB8FD1BC59D29007D4952 /* ForceSketch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8FC1BC59D29007D4952 /* ForceSketch.gif */; settings = {ASSET_TAGS = (); }; };
+		055EB8FD1BC59D29007D4952 /* ForceSketch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 055EB8FC1BC59D29007D4952 /* ForceSketch.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +106,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -206,6 +207,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -243,6 +245,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -252,6 +255,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ForceSketch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.flexmonkey.ForceSketch;
@@ -263,6 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ForceSketch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.flexmonkey.ForceSketch;
@@ -289,6 +294,7 @@
 				055EB8FB1BC51F6E007D4952 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
